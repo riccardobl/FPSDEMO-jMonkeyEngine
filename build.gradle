@@ -1,0 +1,55 @@
+plugins {
+    id 'java'
+}
+
+group 'com.mygame'
+version '1.0.0'
+
+repositories {
+    jcenter()
+    mavenCentral()
+    maven { url "https://dl.bintray.com/jmephonon/jmePhonon" }
+	maven { url 'https://jitpack.io' }
+    maven { url  "https://dl.bintray.com/riccardo/effekseer" }
+    maven { url  "https://dl.bintray.com/riccardo/f3b"  }
+    maven { url "http://dl.bintray.com/riccardo/v-hacd" }
+}
+
+
+project.ext {
+    jmeVer = "3.3.2-stable"
+}
+
+dependencies {
+    implementation 'com.jme.effekseer:jme-effekseerNative:0.2'
+    implementation(group: 'com.jme3.phonon', name: 'jmePhonon', version: '0.3.5', ext: 'jar', classifier: '')
+    implementation "com.github.riccardobl:jme3-bullet-vhacd:1.0.3"
+    implementation "wf.frk.f3b:jme_f3b:0.9"
+
+    implementation "org.jmonkeyengine:jme3-core:$jmeVer"
+    implementation "org.jmonkeyengine:jme3-desktop:$jmeVer"
+    implementation "org.jmonkeyengine:jme3-effects:$jmeVer"
+    implementation "org.jmonkeyengine:jme3-plugins:$jmeVer"
+
+    // choose lwjgl or 3
+    implementation "org.jmonkeyengine:jme3-lwjgl3:$jmeVer"
+
+    // bullet physics
+    implementation "org.jmonkeyengine:jme3-bullet:$jmeVer"
+    implementation "org.jmonkeyengine:jme3-bullet-native:$jmeVer"
+
+    // post processing effects
+    implementation "com.jayfella:ShaderBlowEx:1.0.2"
+
+}
+
+
+jar {
+	manifest {
+	    attributes "Main-Class": 'com.mygame.Main'	 
+    }
+	from {
+        configurations.runtimeClasspath.filter{ it.exists() }.collect { it.isDirectory() ? it : zipTree(it) }
+    }
+    exclude("META-INF/*")
+}

@@ -1,0 +1,47 @@
+################# CONFIGURATIONS #####################################################
+# >> Configure BINTRAY RELEASE & NATIVE SNAPSHOT
+#   Configure the following secrets/variables (customize the values with your own)
+#     BINTRAY_MAVEN_REPO=riccardoblsandbox/jmonkeyengine
+#     BINTRAY_USER=riccardo
+#     BINTRAY_APIKEY=XXXXXX
+#     BINTRAY_LICENSE="BSD 3-Clause"
+#####################################################
+name: Build Demo
+on:
+  push:
+  pull_request:
+  release:
+    types: [published]
+  
+jobs:  
+  Build:
+    name: Build
+    runs-on: ubuntu-18.04
+    steps:
+      - name: Clone the repo
+        uses: actions/checkout@v2     
+        with:
+          fetch-depth: 1
+      - name: Build with gradle
+        run: |
+          gradle build 
+      - name: Upload build
+        uses: actions/upload-artifact@v2
+        with:
+          name: fps-demo
+          path: build/libs/fps-demo-*.jar
+      - name: Deploy to github release
+        if: github.event_name == 'release'
+        run: |
+          echo "${GITHUB_EVENT_PATH}"
+          cat ${GITHUB_EVENT_PATH}
+          releaseId=$(jq --raw-output '.release.id' ${GITHUB_EVENT_PATH})
+          filename=$(ls build/libs/fps-demo-*.jar)
+          echo "Upload $filename to release $releaseId"
+          url="https://uploads.github.com/repos/${GITHUB_REPOSITORY}/releases/$releaseId/assets?name=$(basename $filename)"
+          echo "Upload to $url"
+          curl -L \
+            -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
+            -H "Content-Type: application/zip" \
+            --data-binary @"$filename" \
+            "$url"

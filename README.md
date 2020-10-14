@@ -6,7 +6,7 @@ An FPS demo made with jMonkeyEngine.
 The demo contains:
 - Physics (with bullet engine)
 - Animations (with f3b animations)
-- Particles (with bullet effekseer)
+- Particles (with effekseer)
 - First person view always drawn on top (no gun clipping with the world)
 - Spatialized audio (with jmePhonon)
 - Collision effects (sounds and smoke)

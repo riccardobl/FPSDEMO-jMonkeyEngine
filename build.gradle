@@ -32,7 +32,7 @@ dependencies {
     implementation "org.jmonkeyengine:jme3-plugins:$jmeVer"
 
     // choose lwjgl or 3
-    implementation "org.jmonkeyengine:jme3-lwjgl3:$jmeVer"
+    implementation "org.jmonkeyengine:jme3-lwjgl:$jmeVer"
 
     // bullet physics
     implementation "org.jmonkeyengine:jme3-bullet:$jmeVer"

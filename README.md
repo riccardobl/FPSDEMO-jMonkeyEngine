@@ -48,15 +48,15 @@ Resources used:
 You can get a precompiled jar from the release page or compile from source with:
 
 ```console
-gradle build
+./gradlew build
 ```
 
 The compiled output in build/libs/fps-demo-XXXX.jar
 
-Run with 
+Run with:
 
 ```console
-java -jar fps-demo-*.jar
+./gradlew run
 ```
 
 ## License

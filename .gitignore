@@ -1,10 +1,7 @@
 *.blend1
 *.log
-gradlew
-gradlew.bat
 .vscode
 .gradle
-gradle
 build
 bin
 *.so

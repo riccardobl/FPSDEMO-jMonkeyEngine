@@ -4,7 +4,7 @@ plugins {
 }
 
 group 'com.mygame'
-version '1.0.0'
+version '1.0.1'
 
 mainClassName = 'com.mygame.Main'
 if (!hasProperty('mainClass')) {

@@ -1,6 +1,7 @@
 plugins {
     id 'application'
     id 'java'
+    id "io.github.0ffz.github-packages" version "1.2.1"
 }
 
 group 'com.mygame'
@@ -12,13 +13,11 @@ if (!hasProperty('mainClass')) {
 }
 
 repositories {
-    jcenter()
     mavenCentral()
-    maven { url "https://dl.bintray.com/jmephonon/jmePhonon" }
 	maven { url 'https://jitpack.io' }
-    maven { url  "https://dl.bintray.com/riccardo/effekseer" }
-    maven { url  "https://dl.bintray.com/riccardo/f3b"  }
-    maven { url "http://dl.bintray.com/riccardo/v-hacd" }
+    maven githubPackage.invoke("riccardobl")
+    maven githubPackage.invoke("jmePhonon")
+    
 }
 
 
@@ -27,10 +26,10 @@ project.ext {
 }
 
 dependencies {
-    implementation 'com.jme.effekseer:jme-effekseerNative:0.2'
-    implementation(group: 'com.jme3.phonon', name: 'jmePhonon', version: '0.3.6', ext: 'jar', classifier: '')
-    implementation "com.github.riccardobl:jme3-bullet-vhacd:1.0.3"
-    implementation "wf.frk.f3b:jme_f3b:0.9"
+    implementation 'wf.frk:jme-effekseer-native:0.3'
+    implementation(group: 'com.jme3.phonon', name: 'jme_phonon', version: '0.3.7', ext: 'jar', classifier: '')
+    implementation "wf.frk:jme3-bullet-vhacd:1.0.5"
+    implementation "wf.frk:jme_f3b:0.92"
 
     implementation "org.jmonkeyengine:jme3-core:$jmeVer"
     implementation "org.jmonkeyengine:jme3-desktop:$jmeVer"
@@ -45,8 +44,7 @@ dependencies {
     implementation "org.jmonkeyengine:jme3-bullet-native:$jmeVer"
 
     // post processing effects
-    implementation "com.jayfella:ShaderBlowEx:1.0.2"
-
+	implementation 'com.github.polincdev:ShaderBlowEx:master-SNAPSHOT'
 }
 
 

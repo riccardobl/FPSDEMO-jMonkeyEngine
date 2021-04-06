@@ -2,8 +2,6 @@ package com.mygame;
 
 import java.util.ArrayList;
 
-import com.jayfella.filter.MipMapBloom.MipmapBloomFilter;
-import com.jayfella.filter.MipMapBloom.MipmapBloomFilter.GlowMode;
 import com.jme.effekseer.EffekseerRenderer;
 import com.jme3.app.DebugKeysAppState;
 import com.jme3.app.SimpleApplication;
@@ -41,6 +39,9 @@ import com.jme3.shadow.EdgeFilteringMode;
 import com.jme3.system.AppSettings;
 import com.jme3.util.SkyFactory;
 import com.jme3.util.SkyFactory.EnvMapType;
+
+import org.shaderblowex.filter.MipMapBloom.MipmapBloomFilter;
+import org.shaderblowex.filter.MipMapBloom.MipmapBloomFilter.GlowMode;
 
 import wf.frk.f3b.jme3.F3bKey;
 import wf.frk.f3b.jme3.F3bLoader;

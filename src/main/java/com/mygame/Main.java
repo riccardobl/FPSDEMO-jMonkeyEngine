@@ -2,7 +2,7 @@ package com.mygame;
 
 import java.util.ArrayList;
 
-import com.jme.effekseer.EffekseerRenderer;
+import com.jme.effekseer.jme3.EffekseerRenderer;
 import com.jme3.app.DebugKeysAppState;
 import com.jme3.app.SimpleApplication;
 import com.jme3.app.StatsAppState;
@@ -26,6 +26,7 @@ import com.jme3.post.filters.CartoonEdgeFilter;
 import com.jme3.post.filters.FXAAFilter;
 import com.jme3.post.filters.LightScatteringFilter;
 import com.jme3.post.filters.ToneMapFilter;
+import com.jme3.post.ssao.SSAOFilter;
 import com.jme3.renderer.Camera;
 import com.jme3.renderer.RenderManager;
 import com.jme3.renderer.ViewPort;
@@ -58,7 +59,7 @@ public class Main extends SimpleApplication{
         settings.setTitle("jMonkeyEngine - FPS Demo");
         settings.setResolution(1280,720);
         settings.setGammaCorrection(true);
-        settings.setSamples(2);
+        settings.setSamples(4);
         // settings.setFrameRate(120);
 
         app.setShowSettings(true);
@@ -75,8 +76,8 @@ public class Main extends SimpleApplication{
         cartoonEdge.setEdgeColor(ColorRGBA.Black);
         fpp.addFilter(cartoonEdge);
 
-        // SSAOFilter ssaoFilter = new SSAOFilter(2.9299974f,25f,5.8100376f,0.091000035f);
-        // fpp.addFilter(ssaoFilter);
+        SSAOFilter ssaoFilter = new SSAOFilter(2.9299974f,25f,5.8100376f,0.091000035f);
+        fpp.addFilter(ssaoFilter);
 
         ToneMapFilter toneMapFilter=new ToneMapFilter(new Vector3f(11.2f,11.2f,10.f).mult(0.7f));
         fpp.addFilter(toneMapFilter);
@@ -159,12 +160,10 @@ public class Main extends SimpleApplication{
         // Particles
         // Effekseer needs to be initialized here, since it has to be the first filter in the FPP
         EffekseerRenderer effekseerRenderer=EffekseerRenderer.addToViewPort(stateManager,viewPort,assetManager,settings.isGammaCorrection());
-        effekseerRenderer.setSoftParticles(0.9f,2f);
         effekseerRenderer.setAsync(4);
 
         EffekseerRenderer effekseerRendererFPS=EffekseerRenderer.addToViewPort(stateManager,fpsView,assetManager,settings.isGammaCorrection());
-        effekseerRendererFPS.setHardParticles();
-        effekseerRenderer.setAsync(4);
+        effekseerRendererFPS.setAsync(4);
 
         // Add some filters
         initFilters(mainFpp);

@@ -26,7 +26,7 @@ project.ext {
 }
 
 dependencies {
-    implementation 'wf.frk:jme-effekseer-native:0.3'
+    implementation 'wf.frk:jme-effekseer-native:0.4'
     implementation(group: 'com.jme3.phonon', name: 'jme_phonon', version: '0.3.7', ext: 'jar', classifier: '')
     implementation "wf.frk:jme3-bullet-vhacd:1.0.5"
     implementation "wf.frk:jme_f3b:0.92"

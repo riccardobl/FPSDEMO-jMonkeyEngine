@@ -44,7 +44,9 @@ dependencies {
     implementation "org.jmonkeyengine:jme3-bullet-native:$jmeVer"
 
     // post processing effects
-	implementation 'com.github.polincdev:ShaderBlowEx:master-SNAPSHOT'
+	implementation ('com.github.polincdev:ShaderBlowEx:master-SNAPSHOT'){
+            exclude group: 'org.jmonkeyengine'   
+    }
 }
 
 

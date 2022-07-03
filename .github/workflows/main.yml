@@ -45,3 +45,11 @@ jobs:
             -H "Content-Type: application/zip" \
             --data-binary @"$filename" \
             "$url"
+      - name: Publish to jMonkeyEngine Library
+        if: github.event_name == 'release'
+        uses: jMonkeyEngine/jme-library-publish-action@1.0
+        with:
+          userId: ${{ secrets.LIBRARY_USER_ID }}
+          authId: ${{ secrets.LIBRARY_AUTH_ID }}
+          authKey: ${{ secrets.LIBRARY_AUTH_KEY }}
+          token: ${{ secrets.GITHUB_TOKEN }}
